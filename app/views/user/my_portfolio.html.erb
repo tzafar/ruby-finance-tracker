@@ -1,0 +1,23 @@
+<h1>My Portfolio</h1>
+<div class="search-div">
+  <%= form_tag 'search_stock', method: :get do %>
+    <div class="input-group row">
+      <div class="col-sm-9 no-right-padding">
+        <%= text_field_tag :stock, params[:stock], class: 'form-control form-control-lg', placeholder: 'Enter ticket symbol' %>
+      </div>
+<!--      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>-->
+      <div class="col-sm-3 no-left-padding">
+      <%= button_tag type: :submit, class: 'btn btn-success' do %>
+          <%= fa_icon "search 2x" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% if @stock%>
+<div class="card card-header display-inline">
+  <strong>Ticker Symbol: </strong><%= @stock.ticker %>
+  <strong>Company: </strong><%= @stock.name %>
+  <strong>Price: </strong><%= @stock.last_price %>
+</div>
+<% end %>
+</div>
