@@ -4,14 +4,20 @@ class StocksController < ApplicationController
     if params[:stock].present?
       @stock = Stock.get_price(params[:stock])
       if @stock
-        render 'user/my_portfolio'
+        respond_to do |format|
+          format.js { render partial: 'user/result' }
+        end
       else
-        flash[:alert] = 'Please enter a valid symbol'
-        redirect_to my_portfolio_url
+        respond_to do |format|
+          flash[:alert] = 'Please enter a valid symbol'
+          format.js { render partial: 'user/result' }
+        end
       end
     else
-      flash[:alert] = 'Please enter a valid symbol'
-      redirect_to my_portfolio_url
+      respond_to do |format|
+        flash.now[:alert] = 'Please enter a valid symbol'
+        format.js { render partial: 'user/result' }
+      end
     end
   end
 end
