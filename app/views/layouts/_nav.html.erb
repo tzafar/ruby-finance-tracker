@@ -11,15 +11,19 @@
             <%= link_to 'Portfolio', my_portfolio_url, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%#= link_to 'Logout', logout_path, method: :delete %>
-            <a class="nav-link" href="#">Link</a>
+            <%= link_to edit_user_registration_path, class: 'nav-link' do %>
+              <%= fa_icon "edit" %> Edit Profile
+            <% end %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li>
+                                <a class="dropdown-item" href="#">Action</a>
+
+              </li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li>
                 <hr class="dropdown-divider">
@@ -31,7 +35,13 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item username">
+            <%= fa_icon "user" %> <%= current_user.full_name %>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+
           <li class="nav-item">
             <%= link_to 'Logout', destroy_user_session_path, class: 'btn btn-danger mr-1', method: :delete %>
           </li>

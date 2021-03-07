@@ -1,5 +1,6 @@
 .search-div {
-  padding-top: 50px
+  padding-top: 50px;
+  margin-bottom: 10px;
 }
 .no-right-padding {
   padding-right: 0 !important;
@@ -14,4 +15,7 @@
   display: inline-block;
   margin-bottom: 1rem;
   margin-top: 1rem;
+}
+.username {
+  margin-right: 5px;
 }

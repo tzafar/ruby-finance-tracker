@@ -12,8 +12,11 @@
         <% end %>
       </div>
     </div>
-  <% end %>
-    <%= render 'user/result' %>
-
-  <%= render 'user/tracked_stocks' %>
 </div>
+  <% end %>
+  <div id="result">
+    <!-- this div renders the search result-->
+  </div>
+  <% unless @tracked_stocks.empty? %>
+  <%=  render 'user/tracked_stocks'  %>
+  <% end %>

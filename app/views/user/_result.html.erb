@@ -1,13 +1,22 @@
-<div id="result">
-  <div class="results-block">
-    <%= render 'layouts/messages' %>
-  </div>
-
-  <% if @stock %>
-    <div class="card card-header display-inline results-block">
-      <strong>Ticker Symbol: </strong><%= @stock.ticker %>
-      <strong>Company: </strong><%= @stock.name %>
-      <strong>Price: </strong><%= @stock.last_price %>
-    </div>
-  <% end %>
+<div class="results-block">
+  <%= render 'layouts/messages' %>
 </div>
+
+<% if @stock %>
+  <div class="card card-header display-inline results-block">
+    <strong>Ticker Symbol: </strong><%= @stock.ticker %>
+    <strong>Company: </strong><%= @stock.name %>
+    <strong>Price: </strong><%= @stock.last_price %>
+    <% if !current_user.stock_already_tracked?(@stock.ticker) && current_user.can_add_stocks %>
+  <%= link_to 'Add to Portfolio', user_stocks_path(:ticker => @stock.ticker), class: 'btn btn-primary', method: :post %>
+    <% end %>
+
+    <% if current_user.stock_already_tracked?(@stock.ticker)%>
+        <span class="badge badge-info">You are already tracking this stock</span>
+    <% end %>
+
+    <% if !current_user.can_add_stocks %>
+      <span class="badge badge-info">You are already tracking 10 stocks</span>
+    <% end %>
+  </div>
+<% end %>

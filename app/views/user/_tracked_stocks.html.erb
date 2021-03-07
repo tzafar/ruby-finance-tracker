@@ -17,7 +17,7 @@
           <td><%= stock.ticker %></td>
           <td><%= stock.name %></td>
           <td><%= stock.last_price %></td>
-          <td><%= 'PH' %></td>
+          <td><%= link_to 'Remove' , user_stock_path(stock), method: :delete,class: 'btn btn-warning btn-small' %></td>
         </tr>
       <% end %>
       </tbody>

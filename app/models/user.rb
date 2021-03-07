@@ -9,4 +9,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def stock_already_tracked?(ticker)
+    stocks.where(ticker: ticker).exists?
+  end
+
+  def can_add_stocks
+    stocks.count < 10
+  end
+
+  def full_name
+    return "#{first_name} #{last_name}" if first_name || last_name
+    'Anonymose'
+  end
 end
