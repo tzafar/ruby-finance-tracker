@@ -1,0 +1,41 @@
+<h2>Friends</h2>
+
+<div class="search-div">
+  <%= form_tag 'search_friends', remote: true, method: :get do %>
+    <div class="input-group row">
+      <div class="col-sm-9 no-right-padding">
+        <%= text_field_tag :user, params[:user], class: 'form-control form-control-lg', placeholder: 'Enter name of a friend' %>
+      </div>
+      <div class="col-sm-3 no-left-padding">
+        <%= button_tag type: :submit, class: 'btn btn-success' do %>
+          <%= fa_icon "search 2x" %>
+        <% end %>
+      </div>
+    </div>
+    <%end %>
+    </div>
+<div id="result">
+  <!-- this div renders the search result-->
+</div>
+  <% if !@friends.empty? %>
+    <table class="table table-dark table-striped table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @friends.each do |friend| %>
+
+        <tr>
+          <td><%= friend.email %></td>
+          <td><%= friend.full_name %></td>
+          <td><%= link_to 'Unfollow',friendship_path(friend), method: :delete, class: 'btn btn-warning btn-small' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>

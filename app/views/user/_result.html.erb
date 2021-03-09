@@ -20,3 +20,21 @@
     <% end %>
   </div>
 <% end %>
+
+<% if @friends %>
+  <div class="card card-header display-inline results-block">
+      <table>
+    <% @friends.each do |friend| %>
+
+          <tr><td><strong>Full name: </strong><%= friend.full_name %></td>
+            <td><strong>Email: </strong><%= friend.email %></td>
+            <td><% if !current_user.friends?(friend.email)%>
+      <%= link_to 'Follow', friendships_path(friend: friend) , class: 'btn btn-primary', method: :post %>
+    <% end %><% if current_user.friends?(friend.email)%>
+      <span class="badge badge-info">You are already friends</span>
+    <% end %>
+      <% end %><td>
+        </tr>
+    </table>
+  </div>
+<% end %>
